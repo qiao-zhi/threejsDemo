@@ -9,7 +9,7 @@
     <script type="text/javascript" src="../libs2/OBJLoader.js"></script>
     <script type="text/javascript" src="../libs2/stats.js"></script>
     <script type="text/javascript" src="../libs2/WebGL.js"></script>
-    <script type="text/javascript" src="../libs2/TrackballControls.js"></script>
+    <script type="text/javascript" src="../libs2/OrbitControls.js"></script>
     <script type="text/javascript" src="../libs2/onEvent.js"></script>
     <script type="text/javascript" src="../libs2/ThreeBSP.js"></script>
     <script type="text/javascript" src="../libs2/tween.min.js"></script>
@@ -36,7 +36,7 @@
     //基本组件
     var scene, camera, webGLRenderer, stats;
     //鼠标控制动画相关组件
-    var trackballControls, clock;
+    var controls;
     //事件相关
     var threeOnEvent;
 
@@ -92,7 +92,7 @@
         var resultMesh = createResultMesh(wallMesh, windowMesh, true);
         scene.add(resultMesh);
 
-        initTrackballControls();
+        initOrbitControls();
 
         paintBed();
     }
@@ -190,9 +190,6 @@
         requestAnimationFrame(render);
         webGLRenderer.render(scene, camera);
 
-        //鼠标事件
-        var delta = clock.getDelta();
-        trackballControls.update(delta);
         logCameraPosition();
 
         if(stats){
@@ -211,18 +208,11 @@
         $("#logInfo").html(logInfo);
     }
 
-    function initTrackballControls(){
-        clock = new THREE.Clock();
+    function initOrbitControls(){
+        controls = new THREE.OrbitControls(camera,webGLRenderer.domElement);
 
-        trackballControls = new THREE.TrackballControls(camera);
-
-        trackballControls.rotateSpeed = 1.0;
-        trackballControls.zoomSpeed = 1.0;
-        trackballControls.panSpeed = 1.0;
-        //        trackballControls.noZoom=false;
-        //        trackballControls.noPan=false;
-        trackballControls.staticMoving = true;
-        //        trackballControls.dynamicDampingFactor=0.3;
+        controls.minDistance = 1;
+        controls.maxDistance = 5000;
     }
 
     var paintFloor = function (){
