@@ -8,4 +8,3 @@
 ##### (6)THREEBSP用法--用于墙上挖玻璃、门等操作  
 更详细的解释参考:[我的博客](https://www.cnblogs.com/qlqwjy/category/1459042.html)  
 ### [查看效果](http://qiaoliqiang.cn/threejsDemo/html/originHouseWithBedAndWindowsAnnotationEnterRoom.html)
-### ![图片](http://qiaoliqiang.cn/fileDown/qlq.jpeg)
